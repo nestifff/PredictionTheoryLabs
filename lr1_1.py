@@ -1,19 +1,3 @@
-import matplotlib.pyplot as plt
-
-
-def visualizePlot(values, color='blue', skipFirst=0, skipLast=0):
-    indices = list(range(skipFirst, len(values) - skipLast))
-    newValues = []
-    for (i, el) in enumerate(indices):
-        indices[i] = el + 1
-        newValues.append(values[el])
-    plt.plot(indices, newValues, marker='o', color=color)
-
-
-def showAllPlots():
-    plt.show()
-
-
 def simpleSmoothingOdd(series, step):  # нечетное
     smoothing = []
     halfStep = int((step - 1) / 2)
@@ -65,3 +49,10 @@ def polynomial5DegreeSmoothing(series):
     for t in range(len(series) - halfStep, len(series)):
         smoothing.append(series[t])
     return smoothing
+
+
+def getParabolicTrend(m=-6, sigma=1.7, size=240):
+    series = []
+    for t in range(0, size):
+        series.append((0.5 * m * (t + 1) + sigma * (t + 1) ** 2) / 10000)
+    return series
