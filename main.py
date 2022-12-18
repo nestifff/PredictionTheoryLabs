@@ -4,9 +4,13 @@
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 
 
-import lr1Common
+from lr1 import lr1Common
+from lr2 import lr2
 
 
 # lr1Common.showLr1_2()
-lr1Common.showLr1_1()
+# lr1Common.showLr1_1()
 
+
+
+lr2.showLr2_2()
