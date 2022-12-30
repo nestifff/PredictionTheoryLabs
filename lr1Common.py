@@ -9,19 +9,23 @@ def showLr1_1():
     simpleStep3 = lr1.simpleSmoothingOdd(series=startSeries, step=3)
     simpleStep5 = lr1.simpleSmoothingOdd(series=startSeries, step=5)
     simpleStep7 = lr1.simpleSmoothingOdd(series=startSeries, step=7)
-
-    seriesDelete13 = startSeries
-    seriesDelete13.pop()
-    simpleStep4 = lr1.simpleSmoothingEven(seriesDelete13, step=4)
-
-    polynomial5Degree = lr1.polynomial5DegreeSmoothing(startSeries)
-
     visualizePlot(startSeries)
-    # visualizePlot(polynomial5Degree, color="black", skipFirst=2, skipLast=2)
-    # visualizePlot(simpleStep4, color="black", skipFirst=2, skipLast=2)
-    visualizePlot(simpleStep3, color="limegreen", skipFirst=1, skipLast=1)
-    visualizePlot(simpleStep5, color="orange", skipFirst=2, skipLast=2)
-    visualizePlot(simpleStep7, color="red", skipFirst=3, skipLast=3)
+    # visualizePlot(simpleStep3, color="limegreen", skipFirst=1, skipLast=1)
+    # visualizePlot(simpleStep5, color="orange", skipFirst=2, skipLast=2)
+    # visualizePlot(simpleStep7, color="red", skipFirst=3, skipLast=3)
+
+    # seriesDelete13 = startSeries
+    # seriesDelete13.pop()
+    # simpleStep4 = lr1.simpleSmoothingEven(seriesDelete13, step=4)
+    #
+    # polynomial5Degree = lr1.polynomial5DegreeSmoothing(startSeries)
+    #
+    # visualizePlot(startSeries)
+    # visualizePlot(polynomial5Degree, color="red", skipFirst=2, skipLast=2)
+    # visualizePlot(simpleStep4, color="red", skipFirst=2, skipLast=2)
+    # visualizePlot(simpleStep3, color="limegreen", skipFirst=1, skipLast=1)
+    # visualizePlot(simpleStep5, color="orange", skipFirst=2, skipLast=2)
+    # visualizePlot(simpleStep7, color="red", skipFirst=3, skipLast=3)
     showAllPlots()
 
 
@@ -39,8 +43,8 @@ def showLr1_2():
     resultTrendSmooth9 = lr1.simpleSmoothingOdd(resultTrendOddLength, 9)
     resultTrendSmooth12 = lr1.simpleSmoothingEven(resultTrend, 12)
 
-    visualizePlot(normalSeries, color="black", marker=".")
-    visualizePlot(resultTrend, marker=".")
+    # visualizePlot(normalSeries, marker=".")
+    visualizePlot(resultTrend, color="black", marker=".")
     visualizePlot(resultTrendSmooth3, color="limegreen", marker=".", skipFirst=1, skipLast=1)
     visualizePlot(resultTrendSmooth9, color="orange", marker=".", skipFirst=4, skipLast=4)
     visualizePlot(resultTrendSmooth12, color="red", marker=".", skipFirst=6, skipLast=6)
