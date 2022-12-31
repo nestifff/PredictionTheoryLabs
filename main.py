@@ -14,8 +14,14 @@ import lr1Common
 # lr2.pearsonGeometric(n=1000, p=0.5, distr=distr)
 
 # iism.common.plotValuesList(distr2)
+from iism.common import plotValuesList
+from iism.lr1 import linearCongruentMethod, macLarenMarsagliaMethod, pearsonTestUniform, kolmogorovTestUniform
 from lr2.lr2 import showLr2_1, showLr2_2
+from matplotlib import pyplot as plt
 
-showLr2_2()
+seq = macLarenMarsagliaMethod()
+pearsonTestUniform(seq)
+kolmogorovTestUniform(seq)
+# plotValuesList(seq)
 
 
