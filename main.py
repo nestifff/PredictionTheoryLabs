@@ -16,12 +16,27 @@ import lr1Common
 # iism.common.plotValuesList(distr2)
 from iism.common import plotValuesList
 from iism.lr1 import linearCongruentMethod, macLarenMarsagliaMethod, pearsonTestUniform, kolmogorovTestUniform
+from iism.lr2 import negBinomialDistribution, geometricDistribution, pearsonNegBinomial, pearsonGeometric
 from lr2.lr2 import showLr2_1, showLr2_2
 from matplotlib import pyplot as plt
-
-seq = macLarenMarsagliaMethod()
-pearsonTestUniform(seq)
-kolmogorovTestUniform(seq)
-# plotValuesList(seq)
+from statistics import mean, variance
 
 
+N = 1000
+sumGeom = 0
+sumNegBinomial = 0
+
+for k in range(N):
+    print(k)
+    errorsGeom = 0
+    errorsNegBinomial = 0
+    for i in range(10):
+        geomDistr = geometricDistribution()
+        negBinomialDistr = negBinomialDistribution()
+        errorsNegBinomial += pearsonNegBinomial(negBinomialDistr)
+        errorsGeom += pearsonGeometric(geomDistr)
+    sumGeom += errorsGeom
+    sumNegBinomial += errorsNegBinomial
+
+print("errorsGeom = ", sumGeom / N)
+print("errorsNegBinomial = ", sumNegBinomial / N)

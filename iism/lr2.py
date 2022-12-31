@@ -4,7 +4,7 @@ import numpy as np
 from scipy import stats
 
 
-def negBinomialDistribution(m, p, n):
+def negBinomialDistribution(m=4, p=0.2, n=1000):
     distr = []
     q = 1.0 - p
     for i in range(n):
@@ -20,7 +20,7 @@ def negBinomialDistribution(m, p, n):
     return distr
 
 
-def geometricDistribution(p, n):
+def geometricDistribution(p=0.25, n=1000):
     distr = []
     for i in range(n):
         a = np.random.uniform()
@@ -28,27 +28,35 @@ def geometricDistribution(p, n):
     return distr
 
 
-def pearsonNegBinomial(n, m, p, distr):
+def pearsonNegBinomial(distr, m=4, p=0.2, n=1000):
     values, counts = np.unique(distr, return_counts=True)
     xi2 = 0.0
     XI2Real = stats.chi2.ppf(0.95, df=m - 1)
     for i in range(m):
         tCount = math.comb(i + m - 1, i) * pow(p, m) * pow(1 - p, i) * n
         xi2 += (counts[i] - tCount) ** 2 / tCount
-    print("pearsonNegBinomial: ", xi2, "theoretical ", XI2Real)
+    # print("pearsonNegBinomial: ", xi2, "; theoretical: ", XI2Real)
+    if xi2 > XI2Real:
+        return 1
+    else:
+        return 0
 
 
-def pearsonGeometric(n, p, distr):
+def pearsonGeometric(distr, p=0.25, n=1000):
     maxValue = max(distr)
     counts = [0] * (maxValue + 1)
     for i in range(n):
         counts[distr[i]] += 1
     xi2 = 0.0
-    XI2Real = stats.chi2.ppf(0.95, df=maxValue - 1)
+    XI2Real = stats.chi2.ppf(0.95, df=maxValue)
     for i in range(maxValue + 1):
         tCount = (1 - p) ** i * p * n
-        xi2 += (counts[i] - tCount) ** 2 / tCount
-    print("pearsonGeometric: ", xi2, "theoretical ", XI2Real)
+        xi2 += (counts[i] - tCount) ** 2 / tCount / n
+    # print("pearsonGeometric: ", xi2, "; theoretical: ", XI2Real)
+    if xi2 > XI2Real:
+        return 1
+    else:
+        return 0
 
 # void pearsonTestForGeometric(double p, vector<int> geodist) {
 #    sort(geodist.begin(), geodist.end());
