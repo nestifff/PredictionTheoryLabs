@@ -17,26 +17,17 @@ import lr1Common
 from iism.common import plotValuesList
 from iism.lr1 import linearCongruentMethod, macLarenMarsagliaMethod, pearsonTestUniform, kolmogorovTestUniform
 from iism.lr2 import negBinomialDistribution, geometricDistribution, pearsonNegBinomial, pearsonGeometric
+from iism.lr3 import normalDistribution, laplasDistribution, exponentialDistribution
 from lr2.lr2 import showLr2_1, showLr2_2
 from matplotlib import pyplot as plt
 from statistics import mean, variance
 
-
-N = 1000
-sumGeom = 0
-sumNegBinomial = 0
-
-for k in range(N):
-    print(k)
-    errorsGeom = 0
-    errorsNegBinomial = 0
-    for i in range(10):
-        geomDistr = geometricDistribution()
-        negBinomialDistr = negBinomialDistribution()
-        errorsNegBinomial += pearsonNegBinomial(negBinomialDistr)
-        errorsGeom += pearsonGeometric(geomDistr)
-    sumGeom += errorsGeom
-    sumNegBinomial += errorsNegBinomial
-
-print("errorsGeom = ", sumGeom / N)
-print("errorsNegBinomial = ", sumNegBinomial / N)
+distr = normalDistribution()
+laplasDistr = laplasDistribution()
+expDistr = exponentialDistribution()
+print("Распределение Лапласа")
+print("Истинное мат ожидание: ", mean(laplasDistr), ', непрерывная оценка:', 0)
+print("Истинная диссперсия", variance(laplasDistr), ', непрерывная оценка:', 2 / 1 ** 2)
+print("Экспоненциальное Распределение")
+print("Истинное мат ожидание: ", mean(expDistr), ', непрерывная оценка:', 1 / 4)
+print("Истинная диссперсия", variance(expDistr), ', непрерывная оценка:', 1 / 4 ** 2)
