@@ -2,6 +2,9 @@
 
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+import math
+import sys
+
 import lr1Common
 
 # lr1Common.showLr1_2()
@@ -14,6 +17,7 @@ import lr1Common
 # lr2.pearsonGeometric(n=1000, p=0.5, distr=distr)
 
 # iism.common.plotValuesList(distr2)
+from iism import lr4
 from iism.common import plotValuesList
 from iism.lr1 import linearCongruentMethod, macLarenMarsagliaMethod, pearsonTestUniform, kolmogorovTestUniform
 from iism.lr2 import negBinomialDistribution, geometricDistribution, pearsonNegBinomial, pearsonGeometric
@@ -22,12 +26,19 @@ from lr2.lr2 import showLr2_1, showLr2_2
 from matplotlib import pyplot as plt
 from statistics import mean, variance
 
-distr = normalDistribution()
-laplasDistr = laplasDistribution()
-expDistr = exponentialDistribution()
-print("Распределение Лапласа")
-print("Истинное мат ожидание: ", mean(laplasDistr), ', непрерывная оценка:', 0)
-print("Истинная диссперсия", variance(laplasDistr), ', непрерывная оценка:', 2 / 1 ** 2)
-print("Экспоненциальное Распределение")
-print("Истинное мат ожидание: ", mean(expDistr), ', непрерывная оценка:', 1 / 4)
-print("Истинная диссперсия", variance(expDistr), ', непрерывная оценка:', 1 / 4 ** 2)
+
+ansFirst = 2.00005
+n = 10000
+errors = []
+indices = list(range(n // 100))
+indices = [x * 100 for x in indices]
+for i in range(10, n+1, 100):
+    res = lr4.calculateFirstMonteKarlo(i)
+    error = math.fabs(ansFirst - res) / ansFirst
+    errors.append(error)
+plt.plot(indices, errors, marker=".", color="blue")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
